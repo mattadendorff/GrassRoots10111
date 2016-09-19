@@ -3,6 +3,7 @@
     <title>GrassRoots10111 Prototype: {{ room }}</title>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <!--SocketIO Script-->
     <script type="text/javascript" charset="utf-8">
         var socket;
         $(document).ready(function () {
@@ -41,6 +42,6 @@
     <h1>GrassRoots10111: {{ room }}</h1>
         <textarea id="chat" cols="80" rows="20"></textarea><br><br>
         <input id="text" size="80" placeholder="Enter your message here"><br><br>
-        <a href="#" onclick="leave_room();">Leave this room</a>
+    <a href="#" onclick="leave_room();">Leave this channel</a>
     </body>
 </html>

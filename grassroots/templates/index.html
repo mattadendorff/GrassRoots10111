@@ -1,6 +1,26 @@
 <html>
     <head>
         <title>GrassRoots10111</title>
+        <script>
+            function geoFindMe() {
+                document.getElementById("locate").textContent = "Locating, please wait...";
+                if (!navigator.geolocation) {
+                    console.log("Geolocation is not supported by your browser");
+                }
+                function success(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    document.getElementById("lat").value = latitude;
+                    document.getElementById("lon").value = longitude;
+                    document.getElementById("locate").textContent = "You have been located!";
+                };
+                function error() {
+                    document.getElementById("locate").textContent = "Unable to find your location";
+                    //console.log("Unable to retrieve your location");
+                };
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+        </script>
     </head>
     <body>
     <h1>GrassRoots10111 User Portal</h1>

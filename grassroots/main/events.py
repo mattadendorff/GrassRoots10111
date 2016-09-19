@@ -1,7 +1,7 @@
 from flask import session
 from flask_socketio import emit, join_room, leave_room
 from .. import socketio
-
+from utils import process_w3w
 
 @socketio.on('joined', namespace='/chat')
 def joined(message):
@@ -12,7 +12,12 @@ def joined(message):
     if 'Admin' in session.get('name'):
         emit('status', {'msg': session.get('name') + ' is online'}, room=room)
     else:
-        emit('status', {'msg': session.get('name') + ' needs help at:' + session.get('location')}, room=room)
+        if session.get('lat'):
+            lat = session.get('lat')
+            lon = session.get('lon')
+        else:
+            lat, lon = process_w3w(session.get('w3w1'), session.get('w3w2'), session.get('w3w3'))
+        emit('status', {'msg': '%s needs help at (%s, %s)' % (session.get('name'), lat, lon)}, room=room)
 
 
 @socketio.on('text', namespace='/chat')
